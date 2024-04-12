@@ -1,0 +1,21 @@
+# this is dynamically created to help with the pio test build
+test/pio/components
+
+# direnv artifacts
+.direnv
+
+# clangd artifacts
+.cache
+
+# esp-idf artifacts
+build
+sdkconfig
+sdkconfig.*
+!sdkconfig.defaults
+
+# python artifacts
+__pycache__
+
+# pio artifacts
+.pio
+.platformio
