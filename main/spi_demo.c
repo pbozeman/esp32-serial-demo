@@ -15,13 +15,17 @@
 #define SPI_CLOCK_MHZ 10
 #define SPI_TASK_DELAY_MS 10
 
-static char LOREM_IPSUM[] =
-    "SPIsum dolor sit amet, MOSI connectus, MISO response non existent. "
-    "Data shiftum leftorium. Ipsum clock stretchum.";
+static char PAYLOAD[] = {
+    0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
+    0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15,
+    0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x20,
+    0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B,
+    0x2C, 0x2D, 0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36,
+    0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x40};
 
-struct send_buffer {
+struct message {
   int32_t num;
-  char txt[sizeof(LOREM_IPSUM)];
+  char bytes[sizeof(PAYLOAD)];
 };
 
 static spi_device_handle_t s_spi;
@@ -33,7 +37,7 @@ static void spi_demo_init() {
       .sclk_io_num = SPI_CLK_GPIO,
       .quadwp_io_num = -1,
       .quadhd_io_num = -1,
-      .max_transfer_sz = sizeof(struct send_buffer)};
+      .max_transfer_sz = sizeof(struct message)};
 
   spi_device_interface_config_t devcfg = {
       .mode = 0,
@@ -48,16 +52,16 @@ static void spi_demo_init() {
 }
 
 static void spi_demo_task(void* arg) {
-  struct send_buffer buffer;
-  buffer.num = 0;
-  memcpy(buffer.txt, LOREM_IPSUM, sizeof(LOREM_IPSUM));
+  struct message msg;
+  msg.num = 0;
+  memcpy(msg.bytes, PAYLOAD, sizeof(PAYLOAD));
 
   while (1) {
-    buffer.num++;
+    msg.num++;
 
     spi_transaction_t t = {
-        .length = 8 * sizeof(buffer),
-        .tx_buffer = &buffer,
+        .length = 8 * sizeof(msg),
+        .tx_buffer = &msg,
         .rx_buffer = NULL};
 
     ESP_ERROR_CHECK(spi_device_transmit(s_spi, &t));

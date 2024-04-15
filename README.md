@@ -23,11 +23,11 @@ the device's address, but it won't transmit the payload.
 
 Payload:
 
-All of the protocols write a raw 32bit integer followed by a block of lorem ipsum.
-The integer is incremented with every packet. Note: the integer is sent little
-endian, so you will see the first byte rapidly moving from 00 to FF, and then the
-second byte increments, etc. You can use this to play with triggering on the data
-of the first byte.
+All of the protocols write a raw 32bit integer followed by series of bytes from
+0x00 to 0x40. The integer is incremented with every packet. Note: the integer is
+sent little endian, so you will see the first byte rapidly moving from 0x00 to
+0xFF, and then the second byte increments, etc. You can use this to play with
+triggering on the data of the first byte.
 
 ### I2C
 
@@ -111,7 +111,7 @@ scope demo board.
 If you are a nix user, there is a flake.nix and .envrc that will install the
 version of esp-idf and platformio I used during development.
 
-The lorem ipsum text is lengthy in order to test signal decoding of packets that
+The payload is lengthy in order to test signal decoding of packets that
 don't fully fit on the screen of the scope. Annoyingly, there are some scopes that
 will only decode from what's currently shown on the screen despite having the full
 packet in memory.
