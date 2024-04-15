@@ -16,7 +16,7 @@ probes to the GPIO pins as documented below.
 
 Optionally connect GPIO 4 to GPIO 6 (I2C SCA) and GPIO 5 to GPIO 7 (I2C SCK) if you
 want to observe the controller sending data to a simulated peripheral. If this
-isn't done, you will only be able to observe the controller initiating a write to
+isn't done, you will only able to observe the controller initiating a write to
 the device's address, but it won't transmit the payload.
 
 ## Signals
