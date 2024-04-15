@@ -102,6 +102,9 @@ pio run -t upload
 
 ## Misc Notes
 
+The main uart is initialized to 115200 8/N/1 and prints the GPIO and
+speed settings on startup for easy reference.
+
 I developed this on an ESP32S3, but it should be easily portable to any
 other ESP chip and dev board. As I just whipped this together to evaluate
 a new scope, the pins and clock speeds are not configurable other than in the

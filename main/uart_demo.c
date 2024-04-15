@@ -64,3 +64,22 @@ void uart_demo_start() {
   uart_demo_init();
   xTaskCreate(uart_demo_task, "uart_task", 4096, NULL, 10, NULL);
 }
+
+void uart_demo_dump_config() {
+  printf(
+      "\nUART\n"
+      "  TX:        %d\n"
+      "  RX:        %d\n"
+      "  Baud:      %d\n"
+      "  Bits:      %d\n"
+      "  Parity:    %c\n"
+      "  Stop bits: %d\n"
+      "  Gap:       %d ms\n",
+      UART_TX_GPIO,
+      UART_RX_GPIO,
+      UART_BAUD_RATE,
+      8,
+      'N',
+      1,
+      UART_TASK_DELAY_MS);
+}

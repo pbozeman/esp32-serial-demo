@@ -74,3 +74,20 @@ void spi_demo_start() {
   spi_demo_init();
   xTaskCreate(spi_demo_task, "spi_task", 4096, NULL, 10, NULL);
 }
+
+void spi_demo_dump_config() {
+  printf(
+      "\nSPI\n"
+      "  CS:        %d\n"
+      "  CLK:       %d\n"
+      "  MOSI:      %d\n"
+      "  MISO:      %d\n"
+      "  Clock:     %d MHz\n"
+      "  Gap:       %d ms\n",
+      SPI_CS_GPIO,
+      SPI_CLK_GPIO,
+      SPI_MOSI_GPIO,
+      SPI_MISO_GPIO,
+      SPI_CLOCK_MHZ,
+      SPI_TASK_DELAY_MS);
+}

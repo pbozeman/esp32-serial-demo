@@ -99,3 +99,18 @@ void i2c_demo_start() {
   xTaskCreate(i2c_controller_task, "i2c_c_task", 4096, NULL, 10, NULL);
   xTaskCreate(i2c_device_task, "i2c_d_task", 4096, NULL, 10, NULL);
 }
+
+void i2c_demo_dump_config() {
+  printf(
+      "\nI2C\n"
+      "  SDA:       %d\n"
+      "  SCL:       %d\n"
+      "  Address:   0x%02x\n"
+      "  Clock:     %d Hz\n"
+      "  Gap:       %d ms\n",
+      I2C_SDA_GPIO,
+      I2C_SCL_GPIO,
+      I2C_ADDR,
+      I2C_FREQ_HZ,
+      I2C_TASK_DELAY_MS);
+}
