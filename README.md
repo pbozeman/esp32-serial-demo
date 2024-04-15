@@ -42,7 +42,7 @@ Pins
 Signal parameters
 
 - Clock frequency: 100KHz
-- I2C address: 0x29
+- I2C address: 0x28
 - Delay between packets: 10ms
 
 ### SPI
