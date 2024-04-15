@@ -23,10 +23,10 @@ the device's address, but it won't transmit the payload.
 
 Payload:
 
-All of the protocols write a raw 32bit integer followed by series of bytes from
+All of the protocols write a raw 16bit integer followed by series of bytes from
 0x00 to 0x40. The integer is incremented with every packet. Note: the integer is
 sent little endian, so you will see the first byte rapidly moving from 0x00 to
-0xFF, and then the second byte increments, etc. You can use this to play with
+0xFF, and then the second byte increments. You can use this to play with
 triggering on the data of the first byte.
 
 ### I2C
